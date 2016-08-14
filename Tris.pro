@@ -18,3 +18,5 @@ SOURCES += main.cpp\
 HEADERS  += window.h
 
 FORMS    += window.ui
+
+CONFIG   += c++14
