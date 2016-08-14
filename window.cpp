@@ -1,7 +1,6 @@
 ﻿#include "window.h"
 #include "logic.h"
 #include "ui_window.h"
-#include <string>
 
 WINDOW::WINDOW(QWidget *parent) :
     QMainWindow(parent),
@@ -19,7 +18,8 @@ int i = 0;
 
 void pushed_button(int button_n, QPushButton *button) {
 	if (button->text() == NULL && status()==0) {
-		char move_ch = turn(i) ? 'O' : 'X';
+		char move_ch = turn(i) ? 'O' : 'X', opponent_ch =  = turn(i) ? 'X':'O';
+		
 		
 		button->setText(move_ch);
 		vec[button_n / 3][button_n % 3] = move_ch;
@@ -28,10 +28,10 @@ void pushed_button(int button_n, QPushButton *button) {
 			if (i == 8)
 				ui->Turn->setText("Draw.");
 			else
-				ui->Turn->setText("Turn of O.");
+				ui->Turn->setText("Turn of " + opponent_ch + ".");
 		}
 		else
-			ui->Turn->setText("X Wins.");
+			ui->Turn->setText("" + move_ch + " Wins.");
 		++i;
 	}
 	else {

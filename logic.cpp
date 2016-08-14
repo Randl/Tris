@@ -1,5 +1,11 @@
 ﻿#include "logic.h"
 
+void init() {
+    vec.push_back("123");
+    vec.push_back("456");
+    vec.push_back("789");	
+}
+
 int status()
 {	
 	if(vec[1][1] == 'X' || vec[1][1] == 'O')
