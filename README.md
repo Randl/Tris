@@ -1,4 +1,5 @@
 # Tris
+Tic-tac-toe written in Qt.
 #
 #
 ## Required:

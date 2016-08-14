@@ -1,5 +1,5 @@
 ﻿#include "window.h"
-#include "main.cpp"
+#include "logic.h"
 #include "ui_window.h"
 #include <string>
 
@@ -17,317 +17,66 @@ WINDOW::~WINDOW()
 
 int i = 0;
 
+void pushed_button(int button_n, QPushButton *button) {
+	if (button->text() == NULL && status()==0) {
+		char move_ch = turn(i) ? 'O' : 'X';
+		
+		button->setText(move_ch);
+		vec[button_n / 3][button_n % 3] = move_ch;
+
+		if(status() == 0) {
+			if (i == 8)
+				ui->Turn->setText("Draw.");
+			else
+				ui->Turn->setText("Turn of O.");
+		}
+		else
+			ui->Turn->setText("X Wins.");
+		++i;
+	}
+	else {
+        switch(status() {
+			0: if(i == 9) ui->Turn->setText("Draw."); else ui->Turn->setText("This space is occupied."); break;
+			1: ui->Turn->setText("X Wins."); break;
+			2: ui->Turn->setText("O Wins."); break;
+		}
+	}
+}
+
 void WINDOW::on_button_1_clicked()
 {
-    if(ui->button_1->text() == NULL and status() == 0)
-    {
-        if(turn(i) == 0)
-        {
-            ui->button_1->setText("X");
-            vec[0][0] = 'X';
-
-            if(status() == 0) ui->Turn->setText("Turn of O.");
-            if(status() == 1) ui->Turn->setText("X Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        if(turn(i) == 1)
-        {
-            ui->button_1->setText("O");
-            vec[0][0] = 'O';
-
-            if(status() == 0) ui->Turn->setText("Turn of X.");
-            if(status() == 2) ui->Turn->setText("O Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        i++;
-    }
-    else
-    {
-        if(status() == 0) ui->Turn->setText("This space is occupied.");
-        if(status() == 1) ui->Turn->setText("X Wins.");
-        if(status() == 2) ui->Turn->setText("O Wins.");
-        if(i == 9 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-    }
+	pushed_button(0, ui->button_1);
 }
 
 void WINDOW::on_button_2_clicked()
 {
-    if(ui->button_2->text() == NULL and status() == 0)
-    {
-        if(turn(i) == 0)
-        {
-            ui->button_2->setText("X");
-            vec[0][1] = 'X';
-
-            if(status() == 0) ui->Turn->setText("Turn of O.");
-            if(status() == 1) ui->Turn->setText("X Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        if(turn(i) == 1)
-        {
-            ui->button_2->setText("O");
-            vec[0][1] = 'O';
-
-            if(status() == 0) ui->Turn->setText("Turn of X.");
-            if(status() == 2) ui->Turn->setText("O Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        i++;
-    }
-    else
-    {
-        if(status() == 0) ui->Turn->setText("This space is occupied.");
-        if(status() == 1) ui->Turn->setText("X Wins.");
-        if(status() == 2) ui->Turn->setText("O Wins.");
-        if(i == 9 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-    }
+	pushed_button(1, ui->button_2);
 }
-
 void WINDOW::on_button_3_clicked()
 {
-    if(ui->button_3->text() == NULL and status() == 0)
-    {
-        if(turn(i) == 0)
-        {
-            ui->button_3->setText("X");
-            vec[0][2] = 'X';
-
-            if(status() == 0) ui->Turn->setText("Turn of O.");
-            if(status() == 1) ui->Turn->setText("X Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        if(turn(i) == 1)
-        {
-            ui->button_3->setText("O");
-            vec[0][2] = 'O';
-
-            if(status() == 0) ui->Turn->setText("Turn of X.");
-            if(status() == 2) ui->Turn->setText("O Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        i++;
-    }
-    else
-    {
-        if(status() == 0) ui->Turn->setText("This space is occupied.");
-        if(status() == 1) ui->Turn->setText("X Wins.");
-        if(status() == 2) ui->Turn->setText("O Wins.");
-        if(i == 9 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-    }
+	pushed_button(2, ui->button_3);
 }
-
 void WINDOW::on_button_4_clicked()
 {
-    if(ui->button_4->text() == NULL and status() == 0)
-    {
-        if(turn(i) == 0)
-        {
-            ui->button_4->setText("X");
-            vec[1][0] = 'X';
-
-            if(status() == 0) ui->Turn->setText("Turn of O.");
-            if(status() == 1) ui->Turn->setText("X Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        if(turn(i) == 1)
-        {
-            ui->button_4->setText("O");
-            vec[1][0] = 'O';
-
-            if(status() == 0) ui->Turn->setText("Turn of X.");
-            if(status() == 2) ui->Turn->setText("O Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        i++;
-    }
-    else
-    {
-        if(status() == 0) ui->Turn->setText("This space is occupied.");
-        if(status() == 1) ui->Turn->setText("X Wins.");
-        if(status() == 2) ui->Turn->setText("O Wins.");
-        if(i == 9 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-    }
+	pushed_button(3, ui->button_4);
 }
-
 void WINDOW::on_button_5_clicked()
 {
-    if(ui->button_5->text() == NULL and status() == 0)
-    {
-        if(turn(i) == 0)
-        {
-            ui->button_5->setText("X");
-            vec[1][1] = 'X';
-
-            if(status() == 0) ui->Turn->setText("Turn of O.");
-            if(status() == 1) ui->Turn->setText("X Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        if(turn(i) == 1)
-        {
-            ui->button_5->setText("O");
-            vec[1][1] = 'O';
-
-            if(status() == 0) ui->Turn->setText("Turn of X.");
-            if(status() == 2) ui->Turn->setText("O Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        i++;
-    }
-    else
-    {
-        if(status() == 0) ui->Turn->setText("This space is occupied.");
-        if(status() == 1) ui->Turn->setText("X Wins.");
-        if(status() == 2) ui->Turn->setText("O Wins.");
-        if(i == 9 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-    }
+	pushed_button(4, ui->button_5);
 }
-
 void WINDOW::on_button_6_clicked()
 {
-    if(ui->button_6->text() == NULL and status() == 0)
-    {
-        if(turn(i) == 0)
-        {
-            ui->button_6->setText("X");
-            vec[1][2] = 'X';
-
-            if(status() == 0) ui->Turn->setText("Turn of O.");
-            if(status() == 1) ui->Turn->setText("X Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        if(turn(i) == 1)
-        {
-            ui->button_6->setText("O");
-            vec[1][2] = 'O';
-
-            if(status() == 0) ui->Turn->setText("Turn of X.");
-            if(status() == 2) ui->Turn->setText("O Wins.");
-           if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        i++;
-    }
-    else
-    {
-        if(status() == 0) ui->Turn->setText("This space is occupied.");
-        if(status() == 1) ui->Turn->setText("X Wins.");
-        if(status() == 2) ui->Turn->setText("O Wins.");
-        if(i == 9 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-    }
+	pushed_button(5, ui->button_6);
 }
-
 void WINDOW::on_button_7_clicked()
 {
-    if(ui->button_7->text() == NULL and status() == 0)
-    {
-        if(turn(i) == 0)
-        {
-            ui->button_7->setText("X");
-            vec[2][0] = 'X';
-
-            if(status() == 0) ui->Turn->setText("Turn of O.");
-            if(status() == 1) ui->Turn->setText("X Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        if(turn(i) == 1)
-        {
-            ui->button_7->setText("O");
-            vec[2][0] = 'O';
-
-            if(status() == 0) ui->Turn->setText("Turn of X.");
-            if(status() == 2) ui->Turn->setText("O Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        i++;
-    }
-    else
-    {
-        if(status() == 0) ui->Turn->setText("This space is occupied.");
-        if(status() == 1) ui->Turn->setText("X Wins.");
-        if(status() == 2) ui->Turn->setText("O Wins.");
-        if(i == 9 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-    }
+	pushed_button(6, ui->button_7);
 }
-
 void WINDOW::on_button_8_clicked()
 {
-    if(ui->button_8->text() == NULL and status() == 0)
-    {
-        if(turn(i) == 0)
-        {
-            ui->button_8->setText("X");
-            vec[2][1] = 'X';
-
-            if(status() == 0) ui->Turn->setText("Turn of O.");
-            if(status() == 1) ui->Turn->setText("X Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        if(turn(i) == 1)
-        {
-            ui->button_8->setText("O");
-            vec[2][1] = 'O';
-
-            if(status() == 0) ui->Turn->setText("Turn of X.");
-            if(status() == 2) ui->Turn->setText("O Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        i++;
-    }
-    else
-    {
-        if(status() == 0) ui->Turn->setText("This space is occupied.");
-        if(status() == 1) ui->Turn->setText("X Wins.");
-        if(status() == 2) ui->Turn->setText("O Wins.");
-        if(i == 9 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-    }
+	pushed_button(7, ui->button_8);
 }
-
 void WINDOW::on_button_9_clicked()
 {
-    if(ui->button_9->text() == NULL and status() == 0)
-    {
-        if(turn(i) == 0)
-        {
-            ui->button_9->setText("X");
-            vec[2][2] = 'X';
-
-            if(status() == 0) ui->Turn->setText("Turn of O.");
-            if(status() == 1) ui->Turn->setText("X Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        if(turn(i) == 1)
-        {
-            ui->button_9->setText("O");
-            vec[2][2] = 'O';
-
-            if(status() == 0) ui->Turn->setText("Turn of X.");
-            if(status() == 2) ui->Turn->setText("O Wins.");
-            if(i == 8 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-        }
-
-        i++;
-    }
-    else
-    {
-        if(status() == 0) ui->Turn->setText("This space is occupied.");
-        if(status() == 1) ui->Turn->setText("X Wins.");
-        if(status() == 2) ui->Turn->setText("O Wins.");
-        if(i == 9 && status() != 1 && status() != 2) ui->Turn->setText("Draw.");
-    }
+	pushed_button(8, ui->button_9);
 }
