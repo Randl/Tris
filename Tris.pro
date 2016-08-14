@@ -19,4 +19,4 @@ HEADERS  += window.h
 
 FORMS    += window.ui
 
-CONFIG   += c++11
+CONFIG   += c++14
